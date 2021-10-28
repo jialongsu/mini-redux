@@ -1,25 +1,25 @@
-import logo from './logo.svg';
+// import {useEffect, useState} from 'react';
+import { useSelector, useDispatch } from './libs/react-redux';
+// import ConnectDemo from './ConnectDemo';
 import './App.css';
 
-function App() {
+export default function Demo() {
+  const num = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  // <ConnectDemo text='父组件传递的prop'/>
+
+  const handleDecrement = (dispatch, getState) => {
+    dispatch({type: 'decrement'});
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className='con'>
+        <button onClick={() => dispatch(handleDecrement)}>-</button>
+        <span>{num}</span>
+        <button onClick={() => dispatch({type: 'increment'})}>+</button>
+      </div>
     </div>
   );
 }
-
-export default App;
